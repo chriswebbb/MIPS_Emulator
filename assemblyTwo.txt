@@ -1,0 +1,17 @@
+j STOP
+hlt
+STOP:
+addi $s0 $zero 99
+addi $s1 $zero 1
+addi $sp $sp -4
+sw $s1 0($sp)
+add $t0 $zero $s1
+add $t2 $zero $s1
+YEET: add $t1 $t2 $t0
+add $to $s0 $t0
+add $t0 $s1 $t0
+add $t2 $t1 $t0
+addi $sp $sp -4
+sw $t2 0($sp)
+bne $s0 $t0 YEET
+hlt
