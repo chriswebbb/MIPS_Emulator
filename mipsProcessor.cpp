@@ -5,7 +5,7 @@
 #include "mipsProcessor.h"
 
 void iniMIPS() {
-    int sizeOfMem = 150;                                          //Size of the memory to be used
+    int sizeOfMem = 115;                                          //Size of the memory to be used
     bool error = false;                                           //Boolean variable used for small errors checking
     bool HALT = false;                                            //Boolean variable used to stop the program if coded as such
     mipsState state;                                              //Holds the current state of the entire MIPS processor

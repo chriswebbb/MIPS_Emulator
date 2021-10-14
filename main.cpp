@@ -14,5 +14,7 @@ int main() {
 
     iniMIPS();                                                                        //Calls the function to simulate the processor
 
+    for(;;);
+
     return 0;
 }
