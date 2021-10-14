@@ -1,2 +1,2 @@
 # MIPS_Emulator
-![GitHub Logo](/images/logo.png)
+![GitHub Logo](/images/MIPS_processor_.png)
