@@ -54,6 +54,8 @@ void MIPS(mipsState & state, bool & error, uint32_t * RAM, bool & HALT){
         state.cycle.decode = true;
 
     }else if(state.cycle.decode){                           //check for decode
+        state.cycle.decode = false;
+        state.cycle.execute = true;
             switch (state.vars.opcode) {                    //switch case for the opcode
                 case 0b000000:                              //This is for register based instructions
                     switch (state.vars.func) {
@@ -61,15 +63,11 @@ void MIPS(mipsState & state, bool & error, uint32_t * RAM, bool & HALT){
                             state.exeSig.addR = true;       //Set the execute addR signal to on for executre phase
                             ++state.presentPC;              //Increase the presentPC
                             ++state.totalR;                 //Increment total register instruction
-                            state.cycle.decode = false;     //Prepare for execute phase
-                            state.cycle.execute = true;
                             return;
                         case 0b000010:
                             state.exeSig.subR = true;
                             ++state.presentPC;
                             ++state.totalR;
-                            state.cycle.decode = false;
-                            state.cycle.execute = true;
                             return;
                         default:
                             error = true;
@@ -80,27 +78,19 @@ void MIPS(mipsState & state, bool & error, uint32_t * RAM, bool & HALT){
                     state.exeSig.addImm = true;
                     ++state.presentPC;
                     ++state.totalI;
-                    state.cycle.decode = false;
-                    state.cycle.execute = true;
                     return;
                 case 0b000010:
                     state.exeSig.jump = true;
                     ++state.totalJ;
-                    state.cycle.decode = false;
-                    state.cycle.execute = true;
                     return;
                 case 0b000011:
                     state.exeSig.branchNot = true;
                     ++state.totalI;
-                    state.cycle.decode = false;
-                    state.cycle.execute = true;
                     return;
                 case 0b000100:
                     state.exeSig.storeWord = true;
                     ++state.presentPC;
                     ++state.totalI;
-                    state.cycle.decode = false;
-                    state.cycle.execute = true;
                     return;
                 case 0b011111:
                     HALT = true;
